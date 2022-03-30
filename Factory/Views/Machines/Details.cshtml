@@ -1,0 +1,50 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h3>Machine Details for @Html.DisplayFor(model => model.Name)</h3>
+<hr />
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Date of Inspection</th>
+      <th scope="col">Operational</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>@Html.DisplayFor(model =>model.DateOfInspection)</td>
+    <td>Machine Operational: @Html.DisplayFor(model=>model.IsOperational)</td>
+  </tr>
+  </tbody>
+</table>
+
+
+@if (@Model.EngineerMachineEntities.Count == 0)
+{
+  <p>This machine is too hard for our Engineers!</p>
+}
+else
+{
+  <h4>Engineers that can work on the machine:</h4>
+
+  @foreach (var join in Model.EngineerMachineEntities)
+  {
+    <p> @join.Engineer.Name </p>
+    @using (Html.BeginForm("DeleteEngineer", "Machines"))
+    {
+      <p>@Html.Hidden("joinId", @join.EngineerMachineId)</p>
+      <input type="submit" value="Delete" />
+
+    }
+  }
+}
+
+<button type="button">@Html.ActionLink("Back to Machine", "Index")</button>
+<button type="button">@Html.ActionLink("Edit Machine", "Edit", new { id =
+  Model.MachineId })</button>
+<button type="button">@Html.ActionLink("Delete Machine", "Delete", new { id =
+  Model.MachineId })</button>
+<button type="button">@Html.ActionLink("Add a Engineer", "AddEngineer", new { id =
+  Model.MachineId })</button>

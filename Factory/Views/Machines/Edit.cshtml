@@ -1,0 +1,42 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="home">
+
+  <div class="card border-secondary mb-3 mt-5" style="max-width: 60rem;">
+    <div class="card-header">
+      <h1>Editing Machine</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"></h4>
+      <p class="card-text">
+
+        @model Factory.Models.Machine
+
+      <h2>Edit this Machine: </h2>
+      <h4>@Html.DisplayFor(model => model.Name)</h4>
+
+      @using (Html.BeginForm())
+        {
+          @Html.HiddenFor(model => model.MachineId)
+
+          @Html.LabelFor(model => model.Name)
+          @Html.TextBoxFor(model => model.Name)
+        <br>
+          @Html.LabelFor(model => model.IsOperational)
+          @Html.DropDownList("Is Operational", new List<SelectListItem>
+      {
+      new SelectListItem { Text = "Functioning Well", Value = "Functional"},
+      new SelectListItem { Text = "Needs Maintenance ", Value = "Needs Maintenance"},
+      }, "Select Status")
+
+        <br>
+          @Html.LabelFor(model => model.DateOfInspection)
+          @Html.TextBoxFor(model => model.DateOfInspection)
+        <br>
+          @Html.Label("Select engineer")
+          @Html.DropDownList("EngineerId")
+
+        <button><input type="submit" value="Save" /> </button>
+        }

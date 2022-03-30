@@ -1,0 +1,48 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<div class="home">
+
+  <div class="card border-secondary mb-3 mt-5" style="max-width: 60rem;">
+    <div class="card-header">
+      <h1>Edit Engineer</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"></h4>
+      <p class="card-text">
+
+
+        @using (Html.BeginForm())
+        {
+          @Html.HiddenFor(model => model.EngineerId)
+
+          @Html.LabelFor(model => model.Name)
+          @Html.EditorFor(model => model.Name)
+          <br>
+          @Html.LabelFor(model => model.DateOfHire)
+          @Html.TextBoxFor(model => model.DateOfHire)
+          <br>
+          @Html.LabelFor(model => model.DateOfLicense)
+          @Html.TextBoxFor(model => model.DateOfLicense)
+          <br>
+
+          @Html.LabelFor(model => model.IsWorking)
+          @Html.DropDownList("Status", new List<SelectListItem>
+        {
+        new SelectListItem { Text = "Idle", Value = "false"},
+        new SelectListItem { Text = "Occupied", Value = "true"},
+        }, "Select Status")
+          <br>
+          <input type="submit" value="Save" />
+          <br>
+        }
+
+        @Html.ActionLink("Back to Engineers", "Index")
+      </p>
+      </p>
+    </div>
+  </div>
+</div>

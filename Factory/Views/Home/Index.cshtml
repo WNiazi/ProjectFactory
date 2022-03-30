@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+<div class="home">
+
+  <div class="card border-secondary mb-3 mt-5" style="max-width: 60rem;">
+    <div class="card-header">
+      <h1>The Factory</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"></h4>
+      <p class="card-text">
+        @Html.ActionLink("See all Engineers", "Index", "Engineers")
+        <br>
+        @Html.ActionLink("See all Machines", "Index", "Machines")
+      </p>
+    </div>
+  </div>
+</div>

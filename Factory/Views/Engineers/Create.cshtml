@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+@{
+  Layout = "_Layout";
+}
+<div class="home">
+
+  <div class="card border-secondary mb-3 mt-5" style="max-width: 60rem;">
+    <div class="card-header">
+      <h1>Add New Engineer</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"></h4>
+      <p class="card-text">
+
+        @using (Html.BeginForm())
+        {
+          @Html.LabelFor(model => model.Name)
+          @Html.TextBoxFor(model => model.Name)
+          <br>
+          @Html.LabelFor(model => model.DateOfHire)
+          @Html.TextBoxFor(model => model.DateOfHire)
+          <br>
+          @Html.LabelFor(model => model.DateOfLicense)
+          @Html.TextBoxFor(model => model.DateOfLicense)
+          <br>
+          @Html.LabelFor(model => model.IsWorking)
+          @Html.DropDownList("Working", new List<SelectListItem>
+        {
+        new SelectListItem { Text = "Idle", Value = "Idle"},
+        new SelectListItem { Text = "Occupied", Value = "Occupied"},
+        }, "Select Status")
+          <br>
+          <input type="submit" value="Add new engineer" />
+        }
+        <br>
+        <button>@Html.ActionLink("Show all engineers", "Index")</button>
+      </p>
+    </div>
+  </div>
+</div>

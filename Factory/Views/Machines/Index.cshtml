@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+@using Factory.Models;
+@model List<Factory.Models.Machine>;
+
+<div class="home">
+
+  <div class="card border-secondary mb-3 mt-5" style="max-width: 60rem;">
+    <div class="card-header">
+      <h1>The Machines</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"></h4>
+      <p class="card-text">
+
+        @if (@Model.Count == 0)
+        {
+        <h3>No machines have been added yet!</h3>
+        }
+
+        @foreach (Machine machine in Model)
+        {
+        <br>
+          @Html.ActionLink($"{machine.Name}", "Details", new { id = machine.MachineId })
+        <br>
+        }
+      <br>
+      <button>@Html.ActionLink("Add new machine", "Create")</button>
+      <br>
+      <button>@Html.ActionLink("Home", "Index", "Home")</button>
+
+      </p>
+    </div>
+  </div>
+</div>

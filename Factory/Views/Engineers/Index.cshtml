@@ -1,0 +1,40 @@
+@{
+  Layout = "_Layout";
+}
+@using Factory.Models;
+@model List<Factory.Models.Engineer>;
+
+<div class="home">
+
+  <div class="card border-secondary mb-3 mt-5" style="max-width: 60rem;">
+    <div class="card-header">
+      <h1>The Engineers</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"></h4>
+      <p class="card-text">
+
+        @if (@Model.Count == 0)
+        {
+        <h3>No engineers have been added yet!</h3>
+        }
+
+        @foreach (Engineer engineer in @Model)
+        {
+
+          @Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId })
+        <br>
+          @foreach (var machine in @engineer.EngineerMachineEntities)
+          {
+            @machine.Machine.Name
+          <br>
+          }
+        }
+      <br>
+      <button>@Html.ActionLink("Add new engineer", "Create")</button>
+      <br>
+      <button>@Html.ActionLink("Home", "Index", "Home")</button>
+      </p>
+    </div>
+  </div>
+</div>
